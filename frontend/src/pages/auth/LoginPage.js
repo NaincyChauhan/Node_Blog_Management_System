@@ -3,9 +3,11 @@ import { login } from "../../api/auth";
 import { login as loginReducer } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { storeToken } from '../../auth/token';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({ email: "", password: ""});
     const [message, setMessage] = useState("");
@@ -27,6 +29,7 @@ export default function LoginPage() {
             storeToken(response.token)
 
             dispatch(loginReducer( response.data, response.token));
+            navigate('/dashboard');
         }else{
             setErrors(['Invalid credentials or server error.']);
         }

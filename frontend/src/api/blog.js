@@ -2,10 +2,10 @@ import { getToken } from "../auth/token";
 
 const API_URL = 'http://127.0.0.1:5000';
 
-// Fetch Categories
-export const categories = async () => {
+// Fetch Blogs
+export const blogs = async () => {
     const token = getToken();
-    const res = await fetch(`${API_URL}/api/categories/views`, {
+    const res = await fetch(`${API_URL}/api/blog/views`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -17,10 +17,10 @@ export const categories = async () => {
     return res.json();
 }
 
-// Create Category
+// Create Blog
 export const create = async ( data ) => {
     const token = getToken();
-    const res = await fetch(`${API_URL}/api/categories/create`, {
+    const res = await fetch(`${API_URL}/api/blog/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -36,7 +36,7 @@ export const create = async ( data ) => {
 // Update Category
 export const update = async ( data, id ) => {
     const token = getToken();
-    const res = await fetch(`${API_URL}/api/categories/update/${id}`, {
+    const res = await fetch(`${API_URL}/api/blog/update/${id}`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -52,7 +52,7 @@ export const update = async ( data, id ) => {
 // Update Category
 export const destroy = async ( id ) => {
     const token = getToken();
-    const res = await fetch(`${API_URL}/api/categories/delete/${id}`, {
+    const res = await fetch(`${API_URL}/api/blog/delete/${id}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
@@ -65,9 +65,9 @@ export const destroy = async ( id ) => {
 }
 
 // get Category
-export const category = async ( id ) => {
+export const show = async ( id ) => {
     const token = getToken();
-    const res = await fetch(`${API_URL}/api/categories/show/${id}`, {
+    const res = await fetch(`${API_URL}/api/blog/show/${id}`, {
         method: 'GET',
         credentials: 'include',
         headers: {

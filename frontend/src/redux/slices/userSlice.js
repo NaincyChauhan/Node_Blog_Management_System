@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getToken } from '../../auth/token';
 
 const initialState = {
     data: {
@@ -8,7 +9,7 @@ const initialState = {
         profile_image: '',
         fullname: '',
     },
-    isAuthenticated: false,
+    isAuthenticated: getToken() ? true : false,
 };
 
 const userSlice = createSlice({

@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { destroy, categories as getCategories } from '../../api/category';
+import { destroy, blogs as getBlogs } from '../../api/blog';
 import { Link } from 'react-router-dom';
 
-export default function CategoryPage() {
-    const [categories, setCategories] = useState([]);
+export default function BlogsPage() {
+    const [blogs, setBlogs] = useState([]);
     const [errors, setErrors] = useState([]);
     const [message, setMessage] = useState("");
 
-    const deleteCategory = async (category_id) => {
-        const response = await destroy(category_id);
+    const deleteBlog = async (blog_id) => {
+        const response = await destroy(blog_id);
 
         if (response.errors) {
             setErrors(response.errors);
         } else if (response.message) {
             setMessage(response.message);
-            const element = document.getElementById(`category${category_id}`);
-            element ? element.remove() : console.log("something went wrong: To remove cateogry element.");
+            const element = document.getElementById(`blog${blog_id}`);
+            element ? element.remove() : console.log("something went wrong: To remove blog element.");
         }
     }
 
     useEffect(() => {
-        const getCategoriesData = async () => {
-            const response = await getCategories();
+        const getBlogsData = async () => {
+            const response = await getBlogs();
 
             if (response.message === 'Success') {
-                setCategories(response.categories);
+                setBlogs(response.blogs);
                 setMessage(response.message);
             } else {
                 setErrors(response.errors)
             }
         }
-        getCategoriesData();
+        getBlogsData();
     }, [])
 
     return (
@@ -47,12 +47,12 @@ export default function CategoryPage() {
             <div>
                 <ul>
                     {
-                        categories ? (
+                        blogs ? (
                             <>
                                 {
-                                    categories.map((category, idx) => (
-                                        <li style={{ margin: '15px' }} key={idx} id={`category${category.id}`} >
-                                            {category.title}
+                                    blogs.map((blog, idx) => (
+                                        <li style={{ margin: '15px' }} key={idx} id={`blog${blog.id}`} >
+                                            {blog.title}
                                             <>
                                                 <a
                                                     style={{
@@ -62,11 +62,11 @@ export default function CategoryPage() {
                                                         padding: '5px', color: 'white'
                                                     }} type='button'
                                                     href='#'
-                                                    onClick={() => deleteCategory(category.id)}>
+                                                    onClick={() => deleteBlog(blog.id)}>
                                                     Delete
                                                 </a>
                                                 <Link
-                                                    to={`/edit-category/${category.id}`}
+                                                    to={`/blog/update/${blog.id}`}
                                                     style={{
                                                         marginLeft: '5px',
                                                         cursor: 'pointer',
@@ -85,7 +85,7 @@ export default function CategoryPage() {
                             </>
                         ) : (
                             <>
-                                No Data Found.
+                                Data not found.
                             </>
                         )
                     }

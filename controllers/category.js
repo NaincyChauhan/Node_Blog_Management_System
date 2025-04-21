@@ -13,7 +13,7 @@ exports.views = async (req, res) => {
         console.log(error)
         return res.status(500).json({
             message: 'Error',
-            errors: { error },
+            errors: [{ error }],
         });
     }
 }
@@ -31,44 +31,43 @@ exports.create = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             message: 'Error',
-            errors: { error },
+            errors: [{ error }],
         });
     }
 }
 
 exports.update = async (req, res) => {
     try {
-        const { id, title, desc } = req.body;
+        const id = req.params.id;
+        const { title, desc } = req.body;
+
         const category = await Category.findByPk(id);
         if(!category) return res.status(401).json({ message: 'Error', error: 'Category not found' });
-    
-        const category_ = await Category.update({
-            where: {
-                id: category.id,
-            },
-            title,
-            desc,
-        })
+
+        category.title = title;
+        category.desc = desc;
+        await category.save();
+
         res.status(201).json({ 
             message: "Success",
-            success: 'Categories Fetched successfully',
-            category: category_
+            success: 'Categories updated successfully',
+            category
         });
-    } catch (error) {
+    } catch (error) {        
         return res.status(500).json({
             message: 'Error',
-            errors: { error },
+            errors: [{ error }],
         })
     }
 }
 
 exports.destroy = async (req, res) => {
     try {
-        const { id } = req.body;
+        const id = req.params.id;
         const category = await Category.findByPk(id);
         if(!category) return res.status(401).json({ message: 'Error', error: 'Category not found' });
 
-        await Category.destroy({ where: { id }});
+        await category.destroy();
     
         res.status(201).json({ 
             message: "Success",
@@ -77,31 +76,26 @@ exports.destroy = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             message: 'Error',
-            errors: { error },
+            errors: [{ error }],
         });
     }
 }
 
 exports.show = async (req, res) => {
-    console.log("Debugging one is runnign ")
     try {
-        const { id } = req.body;
-        console.log("this isthe id", id)
+        const id = req.params.id;
         const category = await Category.findByPk(id);
         if(!category) return res.status(401).json({ message: 'Error', errors: 'Category not found' });
-
-        console.log(category);
-        const category_ = await Category.findOne({ where: { id }});
     
         res.status(201).json({ 
             message: "Success",
-            success: "Category Deleted Successfully",
-            category: category_,
+            success: "Category Fetched Successfully",
+            category: category,
         });
     } catch (error) {
         return res.status(500).json({
             message: 'Error',
-            errors: { error },
+            errors: [{ error }],
         });
     }
 }

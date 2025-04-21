@@ -51,7 +51,7 @@ module.exports = {
                 type: Sequelize.STRING(1234),
                 allowNull: false
             },
-            logn_text: {
+            long_text: {
                 type: Sequelize.TEXT
             },
             category_id: {
@@ -86,7 +86,7 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('Category');
         await queryInterface.dropTable('Blog');
+        await queryInterface.dropTable('Category');
     }
 };

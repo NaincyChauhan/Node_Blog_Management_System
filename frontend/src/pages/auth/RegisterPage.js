@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { register } from "../../api/auth";
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -27,6 +29,7 @@ export default function RegisterPage() {
             setErrors(response.errors);
         } else if (response.message) {
             setMessage(response.message);
+            navigate('/register');
         }
     };
 

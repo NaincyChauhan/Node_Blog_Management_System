@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const authenticateJWT = require('../middlewares/authenticateJWT');
-const { create, views, update, destroy, show } = require('../controllers/category');
+const { create, views, update, destroy, show } = require('../controllers/blog');
 const router = Router();
 
 router.get('/views', authenticateJWT, views)

@@ -5,9 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function EditCategory() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [category, setCategory] = useState();
     const [formData, setFormData] = useState({
-        id: '',
         title: '',
         desc: '',
     });
@@ -24,29 +22,32 @@ export default function EditCategory() {
         setErrors([]);
         setMessage("");
         
-        const response = await update(formData);
+        const response = await update(formData, id);
 
         if(response.errors) {
             setErrors(response.errors);
         } else if (response.message) {
-            setMessage(response.message);
+            setMessage(response.success);
+            navigate('/categories');
         }
     };
 
     useEffect(() => {
         if(id){
             const getCategoryData = async () => {
-                const response = await getCategory({ id });
+                const response = await getCategory(id);
 
                 if(response.errors){
                     setErrors(response.errors);
                 }else{
-                    setCategory(response.category);
-                    setMessage(response.message);
+                    setFormData({
+                        title: response.category.title,
+                        desc: response.category.desc,
+                    })
+                    setMessage(response.success);                    
                 }
             }
             getCategoryData();
-            formData.id= id;
         }
     },[id]);
 
@@ -60,9 +61,9 @@ export default function EditCategory() {
             }
             {message && <p style={{ color: 'green'}}>{message}</p>}
 
-            <input name='title' placeholder='Enter Title' value={category?.name ? category.name : ""} type='text' onChange={handleChange} />
-            <input name='desc' placeholder='Enter Description' value={category?.desc ? category.desc : ""} type='text' onChange={handleChange} />
-            <button type='submit'>Create</button>
+            <input name='title' placeholder='Enter Title' value={formData.title} type='text' onChange={handleChange} />
+            <input name='desc' placeholder='Enter Description' value={formData.desc} type='text' onChange={handleChange} />
+            <button type='submit'>Update</button>
         </form>
     )
 }

@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
                 len: { args: [10, 1234], msg: 'Description must be at least 10 characters. '},
             }
         },
-        logn_text: {
+        long_text: {
             type: DataTypes.STRING,
         },
         user_id: {

@@ -2,9 +2,11 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require("cors");
+
 const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
-const cors = require("cors");
+const blogRoutes = require('./routes/blog');
 
 require('dotenv').config();
 require('./config/passport');
@@ -28,6 +30,8 @@ app.use(passport.initialize());
 app.use('/api/users', authRoutes);
 // Category Route
 app.use('/api/categories', categoryRoutes);
+// Blog Route
+app.use('/api/blog', blogRoutes);
 
 app.listen(process.env.PORT, async () => {
     console.log(`Server Started at ${process.env.PORT}`)
