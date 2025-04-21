@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header') %>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+
+        <div class="container">
+            <h3>Login Page</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" required class="form-control" id="firstname"
+                        placeholder="FirstName" aria-label="firstname" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" name="lastname" required class="form-control" id="lastname"
+                        placeholder="lastName" aria-label="lastname" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="InputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" required class="form-control" id="InputEmail1"
+                        aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" required class="form-control" id="exampleInputPassword1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="InputConfirmPassword1" class="form-label">Password</label>
+                    <input type="password" name="cpassword" required class="form-control" id="InputConfirmPassword1">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="profileImage">Upload</label>
+                    <input type="file" class="form-control" name="profile_image" id="profileImage">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <%- include('../partials/scripts') %>
+</body>
+
+</html>
