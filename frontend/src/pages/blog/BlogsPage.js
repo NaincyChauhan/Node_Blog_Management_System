@@ -54,17 +54,16 @@ export default function BlogsPage() {
                                         <li style={{ margin: '15px' }} key={idx} id={`blog${blog.id}`} >
                                             {blog.title}
                                             <>
-                                                <a
+                                                <button
                                                     style={{
                                                         marginLeft: '5px',
                                                         cursor: 'pointer',
                                                         backgroundColor: 'red',
                                                         padding: '5px', color: 'white'
                                                     }} type='button'
-                                                    href='#'
                                                     onClick={() => deleteBlog(blog.id)}>
                                                     Delete
-                                                </a>
+                                                </button>
                                                 <Link
                                                     to={`/blog/update/${blog.id}`}
                                                     style={{
@@ -76,6 +75,18 @@ export default function BlogsPage() {
                                                     }}
                                                 >
                                                     Update
+                                                </Link>
+                                                <Link
+                                                    to={`/blog/view/${blog.id}`}
+                                                    style={{
+                                                        marginLeft: '5px',
+                                                        cursor: 'pointer',
+                                                        backgroundColor: 'green',
+                                                        padding: '5px',
+                                                        color: 'white'
+                                                    }}
+                                                >
+                                                    view
                                                 </Link>
                                             </>
                                         </li>

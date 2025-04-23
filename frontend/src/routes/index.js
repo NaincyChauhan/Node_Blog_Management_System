@@ -17,6 +17,7 @@ import NotFound from '../pages/errors/NotFound';
 import BlogsPage from '../pages/blog/BlogsPage';
 import CreateBlog from '../pages/blog/CreateBlog';
 import EditBlog from '../pages/blog/EditBlog';
+import BlogPage from '../pages/blog/BlogPage';
 
 function Router() {
     const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function Router() {
                 <Route path='/blogs' element={<BlogsPage />} />
                 <Route path='/blog/create' element={<CreateBlog />} />
                 <Route path='/blog/update/:id' element={<EditBlog />} />
+                <Route path='/blog/view/:id' element={<BlogPage />} />
             </Route>
 
             {/* Page Not Found */}

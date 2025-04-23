@@ -55,7 +55,6 @@ export default function EditBlog() {
             if (response.message === 'Success') {
                 setMessage(response.success);
                 const blog = response.blog;
-                console.log("this is the blog:", blog);
                 
                 setFormData({
                     title: blog.title,
