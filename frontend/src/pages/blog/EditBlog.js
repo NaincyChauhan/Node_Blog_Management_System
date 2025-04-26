@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { show, update } from '../../api/blog';
+import { show, update } from '../../api/crud';
 import { categories as getCategories } from '../../api/category';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ export default function EditBlog() {
         setErrors([]);
         setMessage("");
 
-        const response = await update(formData, id);
+        const response = await update(formData, id, 'blog');
 
         if (response.errors) {
             setErrors(response.errors);
@@ -50,7 +50,7 @@ export default function EditBlog() {
         }
 
         const fetchBlog = async () => {
-            const response = await show(id);
+            const response = await show(id, 'blog');
 
             if (response.message === 'Success') {
                 setMessage(response.success);

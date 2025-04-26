@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import { show } from "../../api/blog";
+import { show } from "../../api/crud";
 
 
 export default function BlogPage() {
@@ -11,7 +11,7 @@ export default function BlogPage() {
 
     useEffect(() => {
         const getBlogData = async () => {
-            const response = await show(id);
+            const response = await show(id, 'blog');
 
             if (response.message === 'Success') {
                 setBlog(response.blog);

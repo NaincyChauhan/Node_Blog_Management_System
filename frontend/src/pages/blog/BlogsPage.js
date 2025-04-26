@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { destroy, blogs as getBlogs } from '../../api/blog';
+import { destroy, views as getBlogs } from '../../api/crud';
 import { Link } from 'react-router-dom';
 
 export default function BlogsPage() {
@@ -8,7 +8,7 @@ export default function BlogsPage() {
     const [message, setMessage] = useState("");
 
     const deleteBlog = async (blog_id) => {
-        const response = await destroy(blog_id);
+        const response = await destroy(blog_id, 'blog');
 
         if (response.errors) {
             setErrors(response.errors);
@@ -21,7 +21,7 @@ export default function BlogsPage() {
 
     useEffect(() => {
         const getBlogsData = async () => {
-            const response = await getBlogs();
+            const response = await getBlogs('blog');
 
             if (response.message === 'Success') {
                 setBlogs(response.blogs);

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { update, category as getCategory } from '../../api/category';
+import { update, show as getCategory } from '../../api/crud';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditCategory() {
@@ -22,7 +22,7 @@ export default function EditCategory() {
         setErrors([]);
         setMessage("");
         
-        const response = await update(formData, id);
+        const response = await update(formData, id, 'categories');
 
         if(response.errors) {
             setErrors(response.errors);
@@ -35,7 +35,7 @@ export default function EditCategory() {
     useEffect(() => {
         if(id){
             const getCategoryData = async () => {
-                const response = await getCategory(id);
+                const response = await getCategory(id, 'categories');
 
                 if(response.errors){
                     setErrors(response.errors);

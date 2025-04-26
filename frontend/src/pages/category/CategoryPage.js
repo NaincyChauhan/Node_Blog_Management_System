@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { destroy, categories as getCategories } from '../../api/category';
+import { destroy, views as getCategories } from '../../api/crud';
 import { Link } from 'react-router-dom';
 
 export default function CategoryPage() {
@@ -8,7 +8,7 @@ export default function CategoryPage() {
     const [message, setMessage] = useState("");
 
     const deleteCategory = async (category_id) => {
-        const response = await destroy(category_id);
+        const response = await destroy(category_id, 'categories');
 
         if (response.errors) {
             setErrors(response.errors);
@@ -21,7 +21,7 @@ export default function CategoryPage() {
 
     useEffect(() => {
         const getCategoriesData = async () => {
-            const response = await getCategories();
+            const response = await getCategories('categories');
 
             if (response.message === 'Success') {
                 setCategories(response.categories);

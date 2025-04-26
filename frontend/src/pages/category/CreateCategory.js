@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { create } from '../../api/category';
+import { create } from '../../api/crud';
 
 export default function CreateCategory() {
     const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ export default function CreateCategory() {
         setErrors([]);
         setMessage("");
         
-        const response = await create(formData);
+        const response = await create(formData, 'categories');
 
         if(response.errors) {
             setErrors(response.errors);

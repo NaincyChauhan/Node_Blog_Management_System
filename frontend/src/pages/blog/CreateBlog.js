@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { create } from '../../api/blog';
+import { create } from '../../api/crud';
 import { categories as getCategories } from '../../api/category';
 
 export default function CreateBlog() {
@@ -24,7 +24,7 @@ export default function CreateBlog() {
         setErrors([]);
         setMessage("");
 
-        const response = await create(formData);
+        const response = await create(formData, 'blog');
 
         if (response.errors) {
             setErrors(response.errors);
