@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
-                isInt: { msg: 'Category ID must be an integer.' },
+                isInt: { msg: 'User ID must be an integer.' },
             }
         },
         category_id: {

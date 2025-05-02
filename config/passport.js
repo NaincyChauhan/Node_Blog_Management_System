@@ -1,7 +1,5 @@
 const { ExtractJwt, Strategy: JwtStrategy } = require('passport-jwt');
-const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const bcrypt = require('bcryptjs');
 const db = require('../models');
 const User = db.User;
 
