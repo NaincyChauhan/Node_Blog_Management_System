@@ -3,13 +3,12 @@ import { getToken } from "../auth/token";
 const API_URL = 'http://127.0.0.1:5000';
 
 // Register new user
-export const register = async ( userData, csrfToken) => {
+export const register = async ( userData) => {
     const res = await fetch(`${API_URL}/api/users/register`, {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'Content-Type' : 'application/json',
-            'CSRF-Token' : csrfToken,
+            'Content-Type' : 'application/json'
         },
         body: JSON.stringify(userData),
     });
